@@ -2619,6 +2619,7 @@ local function synsaveinstance(CustomOptions, CustomOptions2)
 		mode = "optimized",
 		Decompile = EXECUTOR_NAME ~= "Velocity", -- TODO Temp fix for crashes
 		scriptcache = true,
+		Private = true,
 		-- decomptype = "",
 		DecompileTimeout = 50,
 		-- * New:
@@ -3950,11 +3951,14 @@ end
 											end
 										end
 
-value =
-"-- @ Angelus Decompiles — @Chlorls & @imoRR\n" ..
-"-- @ Discord discord.gg/nDWm6PkFrT\n" ..
-"-- @ Date "..os.date("%Y-%m-%d %H:%M:%S").."\n" ..
-"-- @ Decompiled\n\n"
+if not OPTIONS.Private then
+    value =
+        "-- @ Angelus Decompiles — @Chlorls & @imoRR\n" ..
+        "-- @ Discord discord.gg/nDWm6PkFr\n" ..
+        "-- @ Date "..os.date("%Y-%m-%d %H:%M:%S").."\n" ..
+        "-- @ Decompiled\n\n" ..
+        value
+end
 											.. (hasLinkedSource and "-- Original Source: https://assetdelivery.roblox.com/v1/asset/?" .. (LinkedSource_type or "id") .. "=" .. (LinkedSource or LinkedSource_Url) .. "\n\n" or "")
 											.. value
 									end
@@ -5043,9 +5047,9 @@ if StatusText then -- CreatorId
 		end
 	end)
 
-	-- 🔥 WEBHOOK GameInfo
+	-- 🔥 WEBHOOK Angelus
 	task.wait(Log10 * 2 + ExtraTime)
-
+ 
 else
 
 	if Loading then
