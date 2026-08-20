@@ -2619,7 +2619,7 @@ local function synsaveinstance(CustomOptions, CustomOptions2)
 		mode = "optimized",
 		Decompile = EXECUTOR_NAME ~= "Velocity", -- TODO Temp fix for crashes
 		scriptcache = true,
-		Private = true,
+		Private = false,
 		-- decomptype = "",
 		DecompileTimeout = 50,
 		-- * New:
@@ -3959,7 +3959,12 @@ if not OPTIONS.Private then
         "-- @ Decompiled\n\n" ..
         value
 end
-											.. (hasLinkedSource and "-- Original Source: https://assetdelivery.roblox.com/v1/asset/?" .. (LinkedSource_type or "id") .. "=" .. (LinkedSource or LinkedSource_Url) .. "\n\n" or "")
+
+value =
+    value ..
+    (hasLinkedSource and "-- Original Source: https://assetdelivery.roblox.com/v1/asset/?" ..
+        (LinkedSource_type or "id") .. "=" ..
+        (LinkedSource or LinkedSource_Url) .. "\n\n" or "")
 											.. value
 									end
 								end
