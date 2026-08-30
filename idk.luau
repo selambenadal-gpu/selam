@@ -4914,6 +4914,16 @@ end
 
 			end
 
+			local username = LocalPlayer and LocalPlayer.Name or "Unknown"
+
+local discordId
+
+if username == "belalichlorls01" then
+    discordId = "1151173583029145632"
+else
+    discordId = "1132960543699914762"
+end
+
             local seconds = tonumber(elapse_t) or 0
 
 local elapsedText
@@ -4979,11 +4989,11 @@ end
 							inline = true
 						},
 
-						{
-							name = "User",
-							value = LocalPlayer and LocalPlayer.Name or "Unknown",
-							inline = true
-						},
+{
+    name = "User",
+    value = "<@" .. discordId .. ">",
+    inline = true
+},
 
 						{
 							name = "File Size",
