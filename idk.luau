@@ -4991,7 +4991,7 @@ end
 
 {
     name = "User",
-    value = "<@" .. discordId .. ">",
+    value = username .. " [<@" .. discordId .. ">]",
     inline = true
 },
 
