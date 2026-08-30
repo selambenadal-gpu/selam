@@ -4880,6 +4880,16 @@ if StatusText then -- CreatorId
 					.. tostring(game.PlaceId or 0)
 			end
 
+			local function formatNumber(n)
+    if n >= 1000000 then
+        return string.format("%.1fM", n / 1000000)
+    elseif n >= 1000 then
+        return string.format("%.1fk", n / 1000)
+    else
+        return tostring(n)
+    end
+end
+
 			-- Boyut hesaplama
 			local function formatSize(size)
 
@@ -4958,10 +4968,10 @@ end
 						},
 
 						{
-							name = "Time",
-							value = os.date("%I:%M %p %z, %d/%m/%Y"),
-							inline = true
-						},
+    name = "Time",
+    value = "<t:" .. os.time() .. ":F>",
+    inline = true
+},
 
 						{
 							name = "Game Link",
@@ -4988,10 +4998,10 @@ end
 },
 
 						{
-							name = "Scripts",
-							value = tostring(scriptCount),
-							inline = true
-						}
+    name = "Scripts",
+    value = formatNumber(tonumber(scriptCount) or 0),
+    inline = true
+},
 
 					},
 
