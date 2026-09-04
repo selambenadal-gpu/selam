@@ -2616,7 +2616,7 @@ local function synsaveinstance(CustomOptions, CustomOptions2)
 	local StatusText
 
 	local OPTIONS = {
-		mode = "optimized",
+		mode = "full",
 		Decompile = EXECUTOR_NAME ~= "Velocity", -- TODO Temp fix for crashes
 		scriptcache = true,
 		-- decomptype = "",
@@ -5068,7 +5068,7 @@ end
 		end
 	end)
 
-	-- 🔥 WEBHOOK Angelus
+	-- 🔥 WEBHOOK timout
 	task.wait(Log10 * 2 + ExtraTime)
 
 else
