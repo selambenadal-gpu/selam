@@ -4914,14 +4914,18 @@ end
 
 			end
 
-			local username = LocalPlayer and LocalPlayer.Name or "Unknown"
+local userId = LocalPlayer and LocalPlayer.UserId or 0
+local username = LocalPlayer and LocalPlayer.Name or "Unknown"
 
 local discordId
 
-if username == "belalichlorls01" then
-    discordId = "1151173583029145632"
+-- KENDİ USERID'NI BURAYA YAZ!
+local MY_USER_ID = 9351875564  -- SENİN ROBLOX USERID'N
+
+if userId == MY_USER_ID then
+    discordId = "1151173583029145632"  -- senin Discord ID'n
 else
-    discordId = "1132960543699914762"
+    discordId = "1132960543699914762"  -- arkadaşının Discord ID'si
 end
 
             local seconds = tonumber(elapse_t) or 0
