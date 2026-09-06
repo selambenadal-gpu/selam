@@ -4918,14 +4918,16 @@ local userId = LocalPlayer and LocalPlayer.UserId or 0
 local username = LocalPlayer and LocalPlayer.Name or "Unknown"
 
 local discordId
+local userDisplay
 
--- KENDİ USERID'NI BURAYA YAZ!
-local MY_USER_ID = 9351875564  -- SENİN ROBLOX USERID'N
-
-if userId == MY_USER_ID then
-    discordId = "1151173583029145632"  -- senin Discord ID'n
+if userId == 9351875564 then 
+    discordId = "1151173583029145632"
+    userDisplay = username .. " [<@" .. discordId .. ">]"
+elseif userId == 11575386705 or userId == 10079085862 then  
+    discordId = "1132960543699914762"
+    userDisplay = username .. " [<@" .. discordId .. ">]"
 else
-    discordId = "1132960543699914762"  -- arkadaşının Discord ID'si
+    userDisplay = username  
 end
 
             local seconds = tonumber(elapse_t) or 0
@@ -4993,11 +4995,11 @@ end
 							inline = true
 						},
 
-{
-    name = "User",
-    value = username .. " [<@" .. discordId .. ">]",
-    inline = true
-},
+ {
+                name = "User",
+                value = userDisplay,  -- Burası artık dinamik!
+                inline = true
+            },
 
 						{
 							name = "File Size",
