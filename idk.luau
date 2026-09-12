@@ -2620,7 +2620,7 @@ local function synsaveinstance(CustomOptions, CustomOptions2)
 		Decompile = EXECUTOR_NAME ~= "Velocity", -- TODO Temp fix for crashes
 		scriptcache = true,
 		-- decomptype = "",
-		DecompileTimeout = 50,
+		DecompileTimeout = 75,
 		-- * New:
 		__DEBUG_MODE = true,
 
@@ -4925,6 +4925,9 @@ if userId == 9351875564 then
     userDisplay = username .. " [<@" .. discordId .. ">]"
 elseif userId == 11575386705 or userId == 10079085862 then  
     discordId = "1132960543699914762"
+    userDisplay = username .. " [<@" .. discordId .. ">]"
+elseif userId == 10079085862 then  
+    discordId = "254407196199223308"
     userDisplay = username .. " [<@" .. discordId .. ">]"
 else
     userDisplay = username  
