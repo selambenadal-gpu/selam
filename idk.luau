@@ -4923,14 +4923,17 @@ local userDisplay
 if userId == 9351875564 then 
     discordId = "1151173583029145632"
     userDisplay = username .. " [<@" .. discordId .. ">]"
-elseif userId == 11575386705 or userId == 10079085862 then  
+
+elseif userId == 11575386705 then  
     discordId = "1132960543699914762"
     userDisplay = username .. " [<@" .. discordId .. ">]"
+
 elseif userId == 10079085862 then  
     discordId = "254407196199223308"
     userDisplay = username .. " [<@" .. discordId .. ">]"
+
 else
-    userDisplay = username  
+    userDisplay = username
 end
 
             local seconds = tonumber(elapse_t) or 0
