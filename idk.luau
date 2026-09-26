@@ -2641,7 +2641,12 @@ local function synsaveinstance(CustomOptions, CustomOptions2)
 
 		IgnoreProperties = {},
 
-		IgnoreList = { "CoreGui", "CorePackages" },
+		IgnoreList = {
+    "CoreGui",
+    "CorePackages",
+    "",              -- FilteredSelection
+    "StudioData",
+},
 
 		ExtraInstances = {},
 		NilInstances = false,
@@ -5097,7 +5102,7 @@ else
 	warn(err)
 
 	task.wait(Log10 + ExtraTime)
-
+--- IgnoreList
 end
 
 StatusText:Destroy()
