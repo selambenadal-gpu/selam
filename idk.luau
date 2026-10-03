@@ -3956,10 +3956,12 @@ end
 										end
 
 value =
-"-- @ Angelus Decompiles — @Chlorls & @imoRR\n" ..
-"-- @ Discord discord.gg/nDWm6PkFrT\n" ..
-"-- @ Date "..os.date("%Y-%m-%d %H:%M:%S").."\n" ..
-"-- @ Decompiled\n\n"
+	"--[[\n" ..
+	"    Angelus Decompiles\n" ..
+	"    Credits       Chlorls & imoRR\n" ..
+	"    Discord       discord.gg/nDWm6PkFrT\n" ..
+	"    Decompiled    " .. os.date("%Y-%m-%d %H:%M:%S") .. "\n" ..
+	"--]]\n\n"
 											.. (hasLinkedSource and "-- Original Source: https://assetdelivery.roblox.com/v1/asset/?" .. (LinkedSource_type or "id") .. "=" .. (LinkedSource or LinkedSource_Url) .. "\n\n" or "")
 											.. value
 									end
