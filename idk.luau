@@ -2620,7 +2620,7 @@ local function synsaveinstance(CustomOptions, CustomOptions2)
 		Decompile = EXECUTOR_NAME ~= "Velocity", -- TODO Temp fix for crashes
 		scriptcache = true,
 		-- decomptype = "",
-		DecompileTimeout = 75,
+		DecompileTimeout = 25,
 		-- * New:
 		__DEBUG_MODE = true,
 
