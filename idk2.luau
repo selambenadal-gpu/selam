@@ -5924,79 +5924,80 @@ end
     end
 
     -- Create GameInfo folder with base64encode details
-    do
-        local success, gameInfo = pcall(function()
-            local MarketplaceService = game:GetService("MarketplaceService")
-            local HttpService = game:GetService("HttpService")
-            
-            local placeId = game.PlaceId
-            local productInfo = MarketplaceService:GetProductInfo(placeId, Enum.InfoType.Asset)
-            
-            -- Get game thumbnail
-            local thumbnailUrl = ""
-            pcall(function()
-                local url = "https://thumbnails.roblox.com/v1/games/icons?universeIds=" .. game.GameId .. "&size=512x512&format=Png&isCircular=false"
-                local response = game:HttpGet(url)
-                local decoded = HttpService:JSONDecode(response)
-                if decoded and decoded.data and decoded.data[1] and decoded.data[1].imageUrl then
-                    thumbnailUrl = decoded.data[1].imageUrl
-                end
-            end)
-            
-            if thumbnailUrl == "" then
-                thumbnailUrl = "https://www.roblox.com/Thumbs/Asset.ashx?width=768&height=432&assetId=" .. placeId
-            end
-            
-            return {
-                PlaceId = placeId,
-                GameId = game.GameId or 0,
-                Name = productInfo.Name or "Unknown",
-                Description = productInfo.Description or "",
-                CreatorId = productInfo.Creator and productInfo.Creator.Id or 0,
-                Thumbnail = thumbnailUrl,
-                Created = tostring(productInfo.Created or ""),
-                Updated = tostring(productInfo.Updated or "")
-            }
-        end)
-        
-        if not success or not gameInfo then
-            gameInfo = {
-                PlaceId = game.PlaceId,
-                GameId = game.GameId or 0,
-                Name = "Unknown",
-                Description = "",
-                CreatorId = 0,
-                Thumbnail = "",
-                Created = "",
-                Updated = ""
-            }
-        end
-        
-        -- Build GameInfo as a table of instances to save
-        local gameInfoChildren = {}
-        
-        local function addValue(name, value, className)
-            local val = Instance.new(className or "StringValue")
-            val.Name = name
-            if className == "IntValue" then
-                val.Value = tonumber(value) or 0
-            else
-                val.Value = tostring(value)
-            end
-            table.insert(gameInfoChildren, val)
-        end
-        
-        addValue("Created", gameInfo.Created)
-        addValue("Description", gameInfo.Description)
-        addValue("Name", gameInfo.Name)
-        addValue("PlaceId", gameInfo.PlaceId, "IntValue")
-        addValue("Updated", gameInfo.Updated)
-        addValue("Thumbnail", gameInfo.Thumbnail)
-        
-        warn("[GameInfo] Added GameInfo folder")
+    	-- Create GameInfo folder with game details
+	do
+		local success, gameInfo = pcall(function()
+			local MarketplaceService = game:GetService("MarketplaceService")
+			local HttpService = game:GetService("HttpService")
+			
+			local placeId = game.PlaceId
+			local productInfo = MarketplaceService:GetProductInfo(placeId, Enum.InfoType.Asset)
+			
+			-- Get game thumbnail
+			local thumbnailUrl = ""
+			pcall(function()
+				local url = "https://thumbnails.roblox.com/v1/games/icons?universeIds=" .. game.GameId .. "&size=512x512&format=Png&isCircular=false"
+				local response = game:HttpGet(url)
+				local decoded = HttpService:JSONDecode(response)
+				if decoded and decoded.data and decoded.data[1] and decoded.data[1].imageUrl then
+					thumbnailUrl = decoded.data[1].imageUrl
+				end
+			end)
+			
+			if thumbnailUrl == "" then
+				thumbnailUrl = "https://www.roblox.com/Thumbs/Asset.ashx?width=768&height=432&assetId=" .. placeId
+			end
+			
+			return {
+				PlaceId = placeId,
+				GameId = game.GameId or 0,
+				Name = productInfo.Name or "Unknown",
+				Description = productInfo.Description or "",
+				CreatorId = productInfo.Creator and productInfo.Creator.Id or 0,
+				Thumbnail = thumbnailUrl,
+				Created = tostring(productInfo.Created or ""),
+				Updated = tostring(productInfo.Updated or "")
+			}
+		end)
+		
+		-- Fallback: Eğer pcall başarısız olursa veya gameInfo nil dönerse
+		if not success or not gameInfo then
+			gameInfo = {
+				PlaceId = game.PlaceId,
+				GameId = game.GameId or 0,
+				Name = "Unknown",
+				Description = "",
+				CreatorId = 0,
+				Thumbnail = "",
+				Created = "",
+				Updated = ""
+			}
+		end
+		
+		-- Build GameInfo as a table of instances to save
+		local gameInfoChildren = {}
+		
+		local function addValue(name, value, className)
+			local val = Instance.new(className or "StringValue")
+			val.Name = name
+			if className == "IntValue" then
+				val.Value = tonumber(value) or 0
+			else
+				val.Value = tostring(value)
+			end
+			table.insert(gameInfoChildren, val)
+		end
+		
+		addValue("Created", gameInfo.Created)
+		addValue("Description", gameInfo.Description)
+		addValue("Name", gameInfo.Name)
+		addValue("PlaceId", gameInfo.PlaceId, "IntValue")
+		addValue("Updated", gameInfo.Updated)
+		addValue("Thumbnail", gameInfo.Thumbnail)			
+		warn("[GameInfo] Added GameInfo folder")
 
-        webhookData = gameInfo
-    end
+		webhookData = gameInfo
+	end
 
     -- Handle LocalPlayer isolation during save
     if IsolateLocalPlayer or IsolateLocalPlayerCharacter then
@@ -6278,7 +6279,7 @@ end
 
 					-- Nil-instance containers have no prior parent, and a
 					-- virtual wrapper is already the parent of its own
-					-- children -- detaching there would strip the list they
+					-- children -- GameInfo there would strip the list they
 					-- belong in.
 					if e.parent ~= root then
 						if old then
